@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طهراوي نت - TAHRAWI NET</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-blue: #0f172a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --whatsapp: #25d366;
+            --call: #3b82f6;
+            --palestine: #ef4444; /* لون بنك فلسطين */
+            --palpay: #8b5cf6;    /* لون بال بي */
+            --jawwalpay: #f97316; /* لون جوال بي */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Amiri', 'Segoe UI', Tahoma, serif; }
+
+        body {
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow-x: hidden;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 480px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .brand {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 2px;
+            background: linear-gradient(to bottom, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+            color: white;
+            outline: none;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        /* تنسيق قسم الدفع الجديد في الشاشة الأولى */
+        .payment-methods {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border-right: 4px solid var(--gold);
+        }
+
+        .bank-name { font-size: 0.85rem; color: #cbd5e1; }
+        .bank-num { font-weight: bold; color: #fff; font-family: monospace; font-size: 1rem; }
+
+        /* لوحة التحكم */
+        #dashboard { display: none; }
+        .info-card {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border: 1px solid var(--gold);
+            text-align: center;
+        }
+        .time-left { font-size: 1.8rem; color: #4ade80; font-weight: bold; margin-top: 10px; }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .contact-buttons { display: flex; gap: 10px; margin-top: 12px; }
+        .c-btn {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            gap: 5px; padding: 10px 5px; border-radius: 8px; text-decoration: none;
+            font-weight: bold; font-size: 0.85rem; color: white; transition: 0.3s;
+        }
+        .wa { background: var(--whatsapp); }
+        .ph { background: var(--call); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="text-align: center; color: var(--gold); margin-bottom: 15px; font-style: italic;">"وَفِي السَّمَاءِ رِزْقُكُمْ وَمَا تُوعَدُونَ"</div>
+    
+    <!-- شاشة الدخول -->
+    <div id="login-screen">
+        <h1 class="brand">طهراوي نت</h1>
+        <input type="text" id="user" placeholder="اسم المستخدم">
+        <input type="password" id="pass" placeholder="كلمة المرور">
+        <button class="btn" onclick="login()">دخول الحساب</button>
+
+        <div class="payment-methods">
+            <h3 style="color:var(--gold); font-size:1.1rem; margin-bottom:12px;">📍 نقطة البيع: حسين أبو الخير (الحلاق)</h3>
+            
+            <div class="payment-item" style="border-right-color: var(--palestine);">
+                <span class="bank-name">بنك فلسطين:</span>
+                <span class="bank-num">0597233354</span>
+            </div>
+            
+            <div class="payment-item" style="border-right-color: var(--palpay);">
+                <span class="bank-name">بال بي (PalPay):</span>
+                <span class="bank-num">0595898633</span>
+            </div>
+            
+            <div class="payment-item" style="border-right-color: var(--jawwalpay);">
+                <span class="bank-name">جوال بي (JawwalPay):</span>
+                <span class="bank-num">0595898633</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div id="dashboard">
+        <h2 style="text-align: center; color: var(--gold);">أهلاً بك مجدداً</h2>
+        
+        <div class="info-card">
+            <p>الوقت المتبقي لاشتراكك:</p>
+            <div class="time-left">12 يوم و 08 ساعة</div>
+        </div>
+
+        <div class="contact-box">
+            <p style="color: #fff; font-size: 0.95rem;">👨‍💼 التواصل والاستفسار (بلال طهراوي):</p>
+            <div class="contact-buttons">
+                <a href="https://wa.me/970595898633" class="c-btn wa" target="_blank">واتساب 💬</a>
+                <a href="tel:0595898633" class="c-btn ph">اتصال 📞</a>
+            </div>
+        </div>
+
+        <button onclick="location.reload()" style="background: transparent; border: 1px solid #ff4b2b; color: #ff4b2b; margin-top: 20px;" class="btn">تسجيل الخروج</button>
+    </div>
+</div>
+
+<script>
+    function login() {
+        const u = document.getElementById('user').value;
+        const p = document.getElementById('pass').value;
+        if(u !== "" && p !== "") {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        } else {
+            alert('يرجى إدخال البيانات المطلوبة');
+        }
+    }
+</script>
+
+</body>
+</html>
