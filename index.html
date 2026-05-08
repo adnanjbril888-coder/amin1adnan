@@ -11,9 +11,9 @@
             --glass-bg: rgba(255, 255, 255, 0.05);
             --whatsapp: #25d366;
             --call: #3b82f6;
-            --palestine: #ef4444; /* لون بنك فلسطين */
-            --palpay: #8b5cf6;    /* لون بال بي */
-            --jawwalpay: #f97316; /* لون جوال بي */
+            --palestine: #ef4444; 
+            --palpay: #8b5cf6;    
+            --jawwalpay: #f97316; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Amiri', 'Segoe UI', Tahoma, serif; }
@@ -78,7 +78,8 @@
             margin-top: 10px;
         }
 
-        /* تنسيق قسم الدفع الجديد في الشاشة الأولى */
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
+
         .payment-methods {
             margin-top: 20px;
             text-align: center;
@@ -98,7 +99,6 @@
         .bank-name { font-size: 0.85rem; color: #cbd5e1; }
         .bank-num { font-weight: bold; color: #fff; font-family: monospace; font-size: 1rem; }
 
-        /* لوحة التحكم */
         #dashboard { display: none; }
         .info-card {
             background: rgba(212, 175, 55, 0.1);
@@ -127,6 +127,25 @@
         }
         .wa { background: var(--whatsapp); }
         .ph { background: var(--call); }
+
+        /* تنسيق أزرار التحكم السفلية */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn-back {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-logout {
+            background: transparent;
+            border: 1px solid #ff4b2b;
+            color: #ff4b2b;
+        }
     </style>
 </head>
 <body>
@@ -134,7 +153,6 @@
 <div class="container">
     <div style="text-align: center; color: var(--gold); margin-bottom: 15px; font-style: italic;">"وَفِي السَّمَاءِ رِزْقُكُمْ وَمَا تُوعَدُونَ"</div>
     
-    <!-- شاشة الدخول -->
     <div id="login-screen">
         <h1 class="brand">طهراوي نت</h1>
         <input type="text" id="user" placeholder="اسم المستخدم">
@@ -161,7 +179,6 @@
         </div>
     </div>
 
-    <!-- لوحة التحكم -->
     <div id="dashboard">
         <h2 style="text-align: center; color: var(--gold);">أهلاً بك مجدداً</h2>
         
@@ -178,7 +195,10 @@
             </div>
         </div>
 
-        <button onclick="location.reload()" style="background: transparent; border: 1px solid #ff4b2b; color: #ff4b2b; margin-top: 20px;" class="btn">تسجيل الخروج</button>
+        <div class="action-buttons">
+            <button onclick="goBack()" class="btn btn-back">رجوع 🔙</button>
+            <button onclick="location.reload()" class="btn btn-logout">خروج 🚪</button>
+        </div>
     </div>
 </div>
 
@@ -192,6 +212,12 @@
         } else {
             alert('يرجى إدخال البيانات المطلوبة');
         }
+    }
+
+    // وظيفة زر الرجوع
+    function goBack() {
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('login-screen').style.display = 'block';
     }
 </script>
 
